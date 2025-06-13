@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import CarForm from './CarForm';
-import { useCars, useAddCar, useDeleteCar, useUpdateCar } from '../hooks/useCars';
+import {
+  useCars,
+  useAddCar,
+  useDeleteCar,
+  useUpdateCar,
+} from '../hooks/useCars';
 
 const CarTable = () => {
   const [editingCar, setEditingCar] = useState(null);
@@ -23,6 +28,10 @@ const CarTable = () => {
     setEditingCar(null);
   };
 
+  const handleDelete = (deletedCar) => {
+    deleteMutation.mutate(deletedCar.id);
+  };
+
   if (isLoading) return <div>Yükleniyor...</div>;
   if (error) return <div>Hata: {error.message}</div>;
 
@@ -42,7 +51,7 @@ const CarTable = () => {
           </tr>
         </thead>
         <tbody>
-          {cars.map(car => (
+          {cars.map((car) => (
             <tr key={car.id}>
               <td>{car.id}</td>
               <td>{car.brand}</td>
@@ -51,11 +60,25 @@ const CarTable = () => {
               <td>{car.color}</td>
               <td>
                 {editingCar && editingCar.id === car.id ? (
-                  <CarForm car={car} onSubmit={handleUpdate} onCancel={handleCancelEdit} />
+                  <CarForm
+                    car={car}
+                    onSubmit={handleUpdate}
+                    onCancel={handleCancelEdit}
+                  />
                 ) : (
-                  <button className="btn btn-primary me-2" onClick={() => handleEdit(car)}>Güncelle</button>
+                  <button
+                    className="btn btn-primary me-2"
+                    onClick={() => handleEdit(car)}
+                  >
+                    Güncelle
+                  </button>
                 )}
-                <button className="btn btn-danger" onClick={() => deleteMutation.mutate(car.id)}>Sil</button>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => handleDelete(car.id)}
+                >
+                  Sil
+                </button>
               </td>
             </tr>
           ))}
@@ -65,4 +88,4 @@ const CarTable = () => {
   );
 };
 
-export default CarTable; 
+export default CarTable;
