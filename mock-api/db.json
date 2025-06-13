@@ -1,0 +1,38 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "John Doe"
+    }
+  ],
+  "cars": [
+    {
+      "id": "1",
+      "brand": "Toyota",
+      "model": "Corolla",
+      "year": 2020,
+      "color": "yellow"
+    },
+    {
+      "id": "2",
+      "brand": "Honda",
+      "model": "Civic",
+      "year": 2019,
+      "color": "blue"
+    },
+    {
+      "id": "3",
+      "brand": "Ford",
+      "model": "Focus",
+      "year": 2021,
+      "color": "black"
+    },
+    {
+      "id": "ab66",
+      "brand": "dacia",
+      "model": "sandero",
+      "year": "2016",
+      "color": "mavi"
+    }
+  ]
+}
