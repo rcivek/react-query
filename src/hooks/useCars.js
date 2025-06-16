@@ -7,24 +7,27 @@ export function useCars() {
 
 export function useAddCar() {
   const queryClient = useQueryClient();
-  return useMutation({
+  const mutation = useMutation({
     mutationFn: addCar,
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['cars'] }),
   });
+  return { addCar: mutation.mutate, isLoading: mutation.isLoading, error: mutation.error };
 }
 
 export function useDeleteCar() {
   const queryClient = useQueryClient();
-  return useMutation({
+  const mutation = useMutation({
     mutationFn: deleteCar,
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['cars'] }),
   });
+  return { removeCar: mutation.mutate, isLoading: mutation.isLoading, error: mutation.error };
 }
 
 export function useUpdateCar() {
   const queryClient = useQueryClient();
-  return useMutation({
+  const mutation = useMutation({
     mutationFn: updateCar,
     onSuccess: () => queryClient.invalidateQueries({ queryKey: ['cars'] }),
   });
+  return { updateCar: mutation.mutate, isLoading: mutation.isLoading, error: mutation.error };
 } 
